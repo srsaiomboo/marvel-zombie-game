@@ -14,7 +14,7 @@ class MarvelZombiesGame {
       // Controles
       this.keys = {};
       this.setupEventListeners();
-      
+      this.setupMobileControls();
       // Sistema de salvamento
       this.loadGame();
       
@@ -111,6 +111,62 @@ class MarvelZombiesGame {
           this.showMenu();
       });
   }
+
+  setupMobileControls() {
+    // Elementos dos botões
+    this.leftBtn = document.getElementById('left-btn');
+    this.rightBtn = document.getElementById('right-btn');
+    this.jumpBtn = document.getElementById('jump-btn');
+    
+    // Eventos para botão esquerdo
+    this.leftBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        this.keys['ArrowLeft'] = true;
+    });
+    
+    this.leftBtn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        this.keys['ArrowLeft'] = false;
+    });
+    
+    // Eventos para botão direito
+    this.rightBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        this.keys['ArrowRight'] = true;
+    });
+    
+    this.rightBtn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        this.keys['ArrowRight'] = false;
+    });
+    
+    // Eventos para botão de pulo
+    this.jumpBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        this.keys['ArrowUp'] = true;
+    });
+    
+    this.jumpBtn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        this.keys['ArrowUp'] = false;
+    });
+    
+    // Prevenir comportamento padrão do navegador
+    document.addEventListener('touchmove', (e) => {
+        if (e.target.classList.contains('control-btn')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    // Detectar se é dispositivo mobile
+    this.isMobile = this.detectMobile();
+}
+
+detectMobile() {
+    return (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0));
+}
   
   createLevelButtons() {
       const container = document.getElementById('level-buttons');
@@ -151,15 +207,27 @@ class MarvelZombiesGame {
   }
   
   showScreen(screenName) {
-      // Esconder todas as telas
-      document.querySelectorAll('.screen').forEach(screen => {
-          screen.classList.remove('active');
-      });
-      
-      // Mostrar tela específica
-      document.getElementById(screenName).classList.add('active');
-      this.gameState = screenName.replace('-screen', '');
-  }
+    // Esconder todas as telas
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+    
+    // Mostrar tela específica
+    document.getElementById(screenName).classList.add('active');
+    this.gameState = screenName.replace('-screen', '');
+    
+    // Mostrar/ocultar controles mobile
+    this.toggleMobileControls();
+}
+
+toggleMobileControls() {
+    const mobileControls = document.getElementById('mobile-controls');
+    if (this.gameState === 'playing' && this.isMobile) {
+        mobileControls.style.display = 'flex';
+    } else {
+        mobileControls.style.display = 'none';
+    }
+}
   
   showMenu() {
       this.showScreen('menu');

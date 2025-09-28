@@ -156,6 +156,89 @@ button:hover {
   font-size: 0.9rem;
 }
 
+
+/* Controles Mobile */
+.mobile-controls {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  display: none;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.control-group {
+  display: flex;
+  gap: 15px;
+  pointer-events: auto;
+}
+
+.control-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.7);
+  border: 2px solid #fff;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.control-btn:active {
+  background: rgba(200, 0, 0, 0.9);
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.jump-btn {
+  background: rgba(0, 100, 255, 0.7);
+}
+
+.jump-btn:active {
+  background: rgba(0, 80, 200, 0.9);
+}
+
+/* Mostrar controles apenas em mobile */
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
+  .mobile-controls {
+      display: flex;
+  }
+  
+  /* Ajustar HUD para não sobrepor controles */
+  #hud {
+      bottom: 100px;
+      top: auto;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+  .control-btn {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+  }
+  
+  .control-group {
+      gap: 10px;
+  }
+  
+  .mobile-controls {
+      padding: 0 15px;
+      bottom: 15px;
+  }
+}
+
 /* Animações */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.9); }
