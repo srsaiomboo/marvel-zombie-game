@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Zombies: Level Devil</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Menu Principal -->
+    <div id="menu" class="screen active">
+        <div class="menu-container">
+            <h1>MARVEL ZOMBIES</h1>
+            <h2>Level Devil Edition</h2>
+            <div class="menu-buttons">
+                <button id="start-game">Iniciar Jogo</button>
+                <button id="level-select">Selecionar Nível</button>
+                <button id="toggle-sound">🔊 Som Ligado</button>
+            </div>
+            <div class="controls-info">
+                <h3>Controles:</h3>
+                <p>← → : Mover | ↑ : Pular | R : Reiniciar | M : Mudo</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seleção de Nível -->
+    <div id="level-select-screen" class="screen">
+        <div class="menu-container">
+            <h1>SELECIONAR NÍVEL</h1>
+            <div id="level-buttons" class="level-buttons"></div>
+            <button id="back-to-menu">Voltar ao Menu</button>
+        </div>
+    </div>
+
+    <!-- Tela de Jogo -->
+    <div id="game-screen" class="screen">
+        <canvas id="game-canvas"></canvas>
+        <div id="hud">
+            <div class="hud-item">Nível: <span id="current-level">1</span></div>
+            <div class="hud-item">Vidas: <span id="lives">3</span></div>
+            <div class="hud-item">Pontuação: <span id="score">0</span></div>
+            <button id="restart-level">Reiniciar</button>
+            <button id="pause-game">Pausar</button>
+        </div>
+    </div>
+
+    <!-- Tela de Pausa -->
+    <div id="pause-screen" class="screen">
+        <div class="menu-container">
+            <h1>JOGO PAUSADO</h1>
+            <div class="menu-buttons">
+                <button id="resume-game">Continuar</button>
+                <button id="menu-from-pause">Voltar ao Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Game Over -->
+    <div id="game-over-screen" class="screen">
+        <div class="menu-container">
+            <h1>GAME OVER</h1>
+            <p>Pontuação Final: <span id="final-score">0</span></p>
+            <div class="menu-buttons">
+                <button id="restart-after-gameover">Tentar Novamente</button>
+                <button id="menu-after-gameover">Voltar ao Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Vitória -->
+    <div id="victory-screen" class="screen">
+        <div class="menu-container">
+            <h1>VITÓRIA!</h1>
+            <p>Você sobreviveu aos zumbis!</p>
+            <p>Pontuação Final: <span id="victory-score">0</span></p>
+            <div class="menu-buttons">
+                <button id="restart-after-victory">Jogar Novamente</button>
+                <button id="menu-after-victory">Voltar ao Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/levels.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
