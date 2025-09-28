@@ -251,6 +251,7 @@ toggleMobileControls() {
       this.showScreen('game-screen');
       this.gameState = 'playing';
       this.updateHUD();
+      this.toggleMobileControls();
   }
   
   loadLevel(levelData) {
